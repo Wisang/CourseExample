@@ -1,35 +1,42 @@
 package production;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Schedule{
-	static final int max_program = 1000;
-	
-	private List<TimeSlot> scheduledTimeSlots = new LinkedList<TimeSlot>();
+public class Schedule {
+	private List<Program> scheduledPrograms = new LinkedList<Program>();
 
-	public void addProgram(String programName, String episodeName, int channel,
-			Date startDateTime, int lengthInMinutes) {
-		
-		if(scheduledTimeSlots.size() > max_program)
-			return;
-		
+	public Program addProgram(String programName, String episodeName,
+			int channel, Date startDateTime, int lengthInMinutes) {
+
 		TimeSlot timeSlot = new TimeSlot(channel, startDateTime,
 				lengthInMinutes);
 
 		if (conflictsWithOtherTimeSlots(timeSlot))
 			throw new ConflictingProgramException();
 
-		scheduledTimeSlots.add(timeSlot);
+		Program program = new Program(programName, episodeName, timeSlot);
+		scheduledPrograms.add(program);
+		return program;
 	}
 
 	private boolean conflictsWithOtherTimeSlots(TimeSlot timeSlot) {
-		//complete me
-		for (TimeSlot current : scheduledTimeSlots)
-			if (current.conflictsWith(timeSlot))
+		// complete me
+		for (Program current : scheduledPrograms)
+			if (current.timeSlot.conflictsWith(timeSlot))
 				return true;
 
 		return false;
+	}
+
+	public void removeProgramById(String programIdToRemove) {
+		for (Iterator<Program> iter = scheduledPrograms.iterator(); iter
+				.hasNext();)
+			if (iter.next().getId().equals(programIdToRemove)) {
+				iter.remove();
+				break;
+			}
 	}
 }

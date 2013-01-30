@@ -4,18 +4,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import production.ConflictingProgramException;
+import production.Program;
 import production.Schedule;
 
 public class AddProgramsToSchedule {
 
 	static SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy|h:mm");
-	private Schedule schedule = new Schedule();
 	private int channel;
 	private String date;
 	private String startTime;
 	private int minutes;
 	private String programName;
 	private String episodeName;
+	private String lastId;
+
+	private static Schedule schedule = new Schedule();
+
+	public static Schedule getSchedule() {
+		return schedule;
+	}
 
 	public void setName(String name) {
 		this.programName = name;
@@ -41,10 +48,15 @@ public class AddProgramsToSchedule {
 		this.minutes = minutes;
 	}
 
+	public String lastId() {
+		return lastId;
+	}
+
 	public boolean created() {
 		try {
-			schedule.addProgram(programName, episodeName, channel,
+			Program p = schedule.addProgram(programName, episodeName, channel,
 					buildStartDateTime(), minutes);
+			lastId = p.getId();
 		} catch (ConflictingProgramException e) {
 			return false;
 		}

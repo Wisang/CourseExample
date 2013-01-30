@@ -1,4 +1,4 @@
-package fixtures;
+package test;
 
 public class CreatePrograms {
 	private String name;

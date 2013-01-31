@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import production.ConflictingProgramException;
+import production.DateUtil;
 import production.Program;
 import production.Schedule;
 
@@ -59,14 +60,15 @@ public class AddProgramsToSchedule {
 	public void execute() {
 		try {
 			Program p = schedule.addProgram(programName, episodeName, channel,
-					buildStartDateTime(), minutes);
+					DateUtil.instance().buildDate(date, startTime), minutes);
 			lastId = p.getId();
 			lastCreationSuccessful = true;
 		} catch (ConflictingProgramException e) {
 			lastCreationSuccessful = false;
+			throw e;
 		}
-		
-		//complete me
+
+		// complete me
 		catch (Exception e) {
 			lastCreationSuccessful = false;
 		}

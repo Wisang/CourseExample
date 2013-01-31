@@ -3,6 +3,8 @@ package test;
 public class Arithmetic {
 	private double first;
 	private double second;
+	private String firstName;
+	private String secondName;
 	
 	public void setFirst(double value) {
 		this.first = value;
@@ -27,4 +29,14 @@ public class Arithmetic {
 	public Double divide() {
 		return first / second;
 	}
+	
+	public void addFirstNameToSecondName(String firstName, String secondName) {
+		this.firstName = firstName;
+		this.secondName = secondName;
+	}
+	
+	public String fullName() {
+		return firstName + " " + secondName;
+	}
+	
 }

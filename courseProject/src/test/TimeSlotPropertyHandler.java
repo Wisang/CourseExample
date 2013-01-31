@@ -3,6 +3,7 @@ package test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import production.DateUtil;
 import production.TimeSlot;
 
 import com.om.query.domain.ObjectDescription;
@@ -21,9 +22,9 @@ public class TimeSlotPropertyHandler extends PropertyHandler {
 
 		Date startDateTime = timeSlot.startDateTime;
 
-		objectDescription.addPropertyDescription("date",
-				dateFormat.format(startDateTime));
-		objectDescription.addPropertyDescription("startTime",
-				timeFormat.format(startDateTime));
+		objectDescription.addPropertyDescription("date", DateUtil.instance()
+				.formatDate(startDateTime));
+		objectDescription.addPropertyDescription("startTime", DateUtil
+				.instance().formatTime(startDateTime));
 	}
 }

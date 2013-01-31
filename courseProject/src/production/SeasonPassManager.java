@@ -1,5 +1,6 @@
 package production;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,4 +50,15 @@ public class SeasonPassManager {
 
 		return result;
 	}
+
+	public List<Program> toDoListContentsOn(Date date) {
+		List<Program> result = new LinkedList<Program>();
+
+		for (Program current : toDoList)
+			if (current.isOn(date))
+				result.add(current);
+
+		return result;
+	}
+
 }

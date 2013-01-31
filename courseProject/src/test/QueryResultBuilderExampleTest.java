@@ -28,7 +28,7 @@ public class QueryResultBuilderExampleTest {
 		calendar.set(Calendar.DAY_OF_MONTH, day);
 		calendar.set(Calendar.HOUR, hour);
 		calendar.set(Calendar.MINUTE, min);
-
+		
 		return calendar.getTime();
 	}
 

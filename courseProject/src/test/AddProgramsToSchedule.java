@@ -65,6 +65,11 @@ public class AddProgramsToSchedule {
 		} catch (ConflictingProgramException e) {
 			lastCreationSuccessful = false;
 		}
+		
+		//complete me
+		catch (Exception e) {
+			lastCreationSuccessful = false;
+		}
 	}
 
 	public boolean created() {

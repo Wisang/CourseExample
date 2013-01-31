@@ -18,6 +18,8 @@ public class AddProgramsToSchedule {
 	private String episodeName;
 	private String lastId;
 
+	private boolean lastCreationSuccessful;
+
 	private static Schedule schedule = new Schedule();
 
 	public static Schedule getSchedule() {
@@ -49,18 +51,24 @@ public class AddProgramsToSchedule {
 	}
 
 	public String lastId() {
-		return lastId;
+		if (lastCreationSuccessful)
+			return lastId;
+		return "n/a";
 	}
 
-	public boolean created() {
+	public void execute() {
 		try {
 			Program p = schedule.addProgram(programName, episodeName, channel,
 					buildStartDateTime(), minutes);
 			lastId = p.getId();
+			lastCreationSuccessful = true;
 		} catch (ConflictingProgramException e) {
-			return false;
+			lastCreationSuccessful = false;
 		}
-		return true;
+	}
+
+	public boolean created() {
+		return lastCreationSuccessful;
 	}
 
 	private Date buildStartDateTime() {

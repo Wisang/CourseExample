@@ -39,4 +39,19 @@ public class Schedule {
 				break;
 			}
 	}
+
+	public List<Program> findProgramsNamedOn(String programName, int channel) {
+		List<Program> result = new LinkedList<Program>();
+
+		for (Program program : scheduledPrograms)
+			if (program.timeSlot.channel == channel
+					&& program.programName.equals(programName))
+				result.add(program);
+
+		return result;
+	}
+
+	public void clear() {
+		scheduledPrograms.clear();
+	}
 }

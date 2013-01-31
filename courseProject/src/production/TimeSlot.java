@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TimeSlot {
 	int channel;
-	Date startDateTime;
+	public Date startDateTime;
 	int duration;
 	
 	public TimeSlot(int channel, Date startDateTime, int duration) {

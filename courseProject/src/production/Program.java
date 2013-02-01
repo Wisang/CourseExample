@@ -40,7 +40,6 @@ public class Program {
 
 	public boolean isOn(Date date) {
 		//complete me
-		return DateUtil.instance().isSameDate(timeSlot.startDateTime, date);
-		//return true;
+		return true;
 	}
 }

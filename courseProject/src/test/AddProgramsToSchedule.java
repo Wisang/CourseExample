@@ -66,9 +66,6 @@ public class AddProgramsToSchedule {
 		}
 
 		// complete me
-		catch (Exception e) {
-			lastCreationSuccessful = false;
-		}
 	}
 
 	public boolean created() {

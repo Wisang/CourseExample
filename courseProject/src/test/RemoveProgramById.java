@@ -16,6 +16,5 @@ public class RemoveProgramById {
 	
 	public void execute() {
 		//complete me
-		AddProgramsToSchedule.getSchedule().removeProgramById(id);
 	}
 }

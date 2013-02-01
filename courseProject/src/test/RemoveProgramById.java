@@ -7,8 +7,7 @@ public class RemoveProgramById {
 	}
 	
 	public RemoveProgramById(String id) {
-		this.id = id;
-		execute();
+		this.id = id; execute();
 	}
 	
 	public void setId(String id) {

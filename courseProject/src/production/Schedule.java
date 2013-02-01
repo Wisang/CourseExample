@@ -6,11 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Schedule {
+	static final int max_program = 1000; 
 	private List<Program> scheduledPrograms = new LinkedList<Program>();
 
 	public Program addProgram(String programName, String episodeName,
 			int channel, Date startDateTime, int lengthInMinutes) {
 
+		if(scheduledPrograms.size() > max_program)
+			return null;
+		
 		TimeSlot timeSlot = new TimeSlot(channel, startDateTime,
 				lengthInMinutes);
 
@@ -32,7 +36,7 @@ public class Schedule {
 	}
 
 	public void removeProgramById(String programIdToRemove) {
-		for (Iterator<Program> iter = scheduledPrograms.iterator(); iter
+		for(Iterator<Program> iter = scheduledPrograms.iterator(); iter
 				.hasNext();)
 			if (iter.next().getId().equals(programIdToRemove)) {
 				iter.remove();
@@ -43,7 +47,7 @@ public class Schedule {
 	public List<Program> findProgramsNamedOn(String programName, int channel) {
 		List<Program> result = new LinkedList<Program>();
 
-		for (Program program : scheduledPrograms)
+		for(Program program : scheduledPrograms)
 			if (program.timeSlot.channel == channel
 					&& program.programName.equals(programName))
 				result.add(program);

@@ -11,8 +11,7 @@ public class AddProgramsToSchedule {
 
 	static SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy|h:mm");
 	private int channel;
-	private String date;
-	private String startTime;
+	private String date; private String startTime;
 	private int minutes;
 	private String programName;
 	private String episodeName;

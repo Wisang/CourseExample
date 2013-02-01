@@ -30,9 +30,12 @@ public class Program {
 	}
 
 	public boolean sameEpisodeAs(Program program) {
-		return timeSlot.channel == program.timeSlot.channel
+		if(timeSlot.channel == program.timeSlot.channel
 				&& programName.equals(program.programName)
-				&& episodeName.equals(program.episodeName);
+				&& episodeName.equals(program.episodeName))
+			return true;
+		else
+			return false;
 	}
 
 	public boolean isOn(Date date) {

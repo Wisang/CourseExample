@@ -2,6 +2,7 @@ package test;
 
 import java.text.ParseException;
 
+import production.ConflictingProgramException;
 import production.DateUtil;
 
 public class GeneratePeriodicPrograms {
@@ -42,11 +43,13 @@ public class GeneratePeriodicPrograms {
 			String startTime, int minutes, String nextStartDate, int i)
 			throws ParseException {
 		addProgramsToSchedule.setChannel(channel);
-		addProgramsToSchedule.setDate(nextStartDate);
-		addProgramsToSchedule.setEpisode(String.format("E%d", (i + 1)));
-		addProgramsToSchedule.setName(programName);
-		addProgramsToSchedule.setStartTime(startTime);
-		addProgramsToSchedule.setMinutes(minutes);
-		addProgramsToSchedule.execute();
+	      addProgramsToSchedule.setDate(nextStartDate);
+	      addProgramsToSchedule.setEpisode(String.format("E%d", (i + 1)));
+	      addProgramsToSchedule.setName(programName);
+	      addProgramsToSchedule.setStartTime(startTime);
+	      addProgramsToSchedule.setMinutes(minutes);
+	      addProgramsToSchedule.execute();
+	      if (!addProgramsToSchedule.created())
+	         throw new ConflictingProgramException();
 	}
 }

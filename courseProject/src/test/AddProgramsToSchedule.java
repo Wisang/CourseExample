@@ -2,7 +2,6 @@ package test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import production.ConflictingProgramException;
 import production.DateUtil;
 import production.Program;
@@ -57,7 +56,7 @@ public class AddProgramsToSchedule {
 		return "n/a";
 	}
 
-	public void execute() {
+	public void execute() throws ParseException {
 		try {
 			Program p = schedule.addProgram(programName, episodeName, channel,
 					DateUtil.instance().buildDate(date, startTime), minutes);
@@ -65,7 +64,6 @@ public class AddProgramsToSchedule {
 			lastCreationSuccessful = true;
 		} catch (ConflictingProgramException e) {
 			lastCreationSuccessful = false;
-			throw e;
 		}
 
 		// complete me
@@ -76,14 +74,5 @@ public class AddProgramsToSchedule {
 
 	public boolean created() {
 		return lastCreationSuccessful;
-	}
-
-	private Date buildStartDateTime() {
-		try {
-			String dateTime = String.format("%s|%s", date, startTime);
-			return dateFormat.parse(dateTime);
-		} catch (ParseException e) {
-			throw new RuntimeException("Unable to parse date/time", e);
-		}
 	}
 }

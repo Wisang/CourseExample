@@ -30,6 +30,7 @@ public class SeasonPassManager {
 	}
 
 	private boolean alreadyInToDoList(Program candidate) {
+		// complete me
 		for (Program current : toDoList)
 			if (current.sameEpisodeAs(candidate))
 				return true;
